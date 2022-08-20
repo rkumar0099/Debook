@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.9;
 
+import "hardhat/console.sol"; 
 import "./interfaces/IPay.sol";
 import "./interfaces/IBook.sol";
 import "./libraries/SafeMath.sol";
@@ -19,7 +20,7 @@ contract Pay is IPay {
         uint pricePerContribution;
         uint totalContribution;
         uint bookPrice;
-        uint phase;
+        uint phase; // phase 1, phase 2, phase 3, and so on
         bool created;
     }
     /*
@@ -45,6 +46,7 @@ contract Pay is IPay {
         This contract is deployed by the Router contract. Some functional calls are only
         authorized through the router contract
         */
+        console.log('The owner of the pay contract is ', _owner);
         owner = _owner;
     }
     

@@ -31,6 +31,7 @@ contract Book is IBook {
 
     constructor(address _owner) {
         // Each author can upload at most 10 books.
+        console.log('The owner of the Book smart contract is ', _owner);
         MAX_BOOKS = 10;
         owner = _owner;
     }
@@ -46,6 +47,7 @@ contract Book is IBook {
         numBooks[_author] += 1;
         author[_id] = _author;
         present[_id] = true;
+        console.log('The book status = ', present[_id]);
     }
 
     /*

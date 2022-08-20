@@ -20,6 +20,8 @@ contract Router is IRouter {
         owner = msg.sender;
         book = deployBookContract(getId("10000"));
         pay = deployPayContract(getId("20000"));
+        console.log('Book address', book);
+        console.log('Pay address', pay);
     }
 
     function deployBookContract(bytes32 _salt) public payable returns (address) {
@@ -40,7 +42,8 @@ contract Router is IRouter {
             id := mload(add(_hash, 32))
         }
     }
-
+    // content hash 
+    // price in eth or wei
     function addBook(string memory _hash, uint _price, bool _createPool) external {
         bytes32 _id = getId(_hash);
         address _author = msg.sender;
@@ -56,6 +59,11 @@ contract Router is IRouter {
         IPay(pay).createPool(_id, _price, _author);
         
         //}
+    }
+
+    function exists(string memory _hash) external returns (bool status) {
+        bytes32 _id = getId(_hash);
+        return IBook(book).exists(_id);
     }
 
     function deleteBook(string memory _hash) external {

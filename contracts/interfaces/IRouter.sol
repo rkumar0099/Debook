@@ -10,5 +10,6 @@ interface IRouter {
     function withdrawContribution(string memory _hash) external;
     function withdrawAuthorEarnings(string memory _hash, uint _phase) external;
     function redeemBook(string memory _hash, uint _phase) external returns (bool status);
+    function exists(string memory _hash) external returns (bool status);
     function fund() external payable;
 }
